@@ -1,0 +1,23 @@
+@page "/text"
+@rendermode InteractiveServer
+
+<PageTitle>Text</PageTitle>
+
+<h1>Text</h1>
+
+<input @onchange="InputChanged"/>
+<p>@_message</p>
+
+<input @bind="_text"/>
+<button @onclick="() => _text = string.Empty">Clear</button>
+<p>@_text</p>
+
+@code {
+    string _message = "";
+    string _text = "";
+
+    void InputChanged(ChangeEventArgs e)
+    {
+        _message = (string)e.Value;
+    }
+}
