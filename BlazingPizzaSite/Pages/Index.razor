@@ -1,7 +1,9 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h1>Welcome to Blazing Pizza</h1>
+<p>@_welcomeMessage</p>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code
+{
+    private string _welcomeMessage = "However you like your pizzas, we can deliver them fast!";
+}
