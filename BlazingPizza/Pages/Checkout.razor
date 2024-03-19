@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <button class="checkout-button btn btn-warning" @onclick="PlaceOrder" disabled="@isSubmitting">
+    <button class="checkout-button btn btn-warning" @onclick="PlaceOrder" disabled="@_isSubmitting">
         Place Order
     </button>
 </div>
@@ -53,14 +53,14 @@
 @code
 {
     Order Order => OrderState.Order;
-    bool isSubmitting;
+    bool _isSubmitting;
 
     async Task PlaceOrder()
     {
-        isSubmitting = true;
+        _isSubmitting = true;
         var response = await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "orders", OrderState.Order);
         var newOrderId = await response.Content.ReadFromJsonAsync<int>();
         OrderState.ResetOrder();
-        NavigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/myorders");
     }
 }
