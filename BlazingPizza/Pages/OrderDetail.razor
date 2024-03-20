@@ -1,0 +1,73 @@
+@page "/myorders/{orderId:int}"
+@using BlazingPizza.Model
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<div class="main">
+    @if (_invalidOrder)
+    {
+        <h2>Order Not Found</h2>
+        <p>We're sorry but this order no long exists.</p>
+    }
+    else if (_orderWithStatus is null)
+    {
+        <div class="track-order">
+            <div class="track-order-title">
+                <h2>
+                    <text>Loading...</text>
+                </h2>
+                <p class="ml-auto mb-0">
+                    ...
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="track-order">
+            <div class="track-order-title">
+                <h2>
+                    Order Placed @_orderWithStatus.Order.CreatedTime.ToLongDateString()
+                </h2>
+                <p class="ml-auto mb-0">
+                    Status: <strong>@_orderWithStatus.StatusText</strong>
+                </p>
+            </div>
+            <div class="track-order-body">
+                <div class="track-order-details">
+                    @foreach (var pizza in _orderWithStatus.Order.Pizzas)
+                    {
+                        <p>
+                            <strong>
+                                @(pizza.Size)"
+                                @pizza.Special.Name
+                                (£@pizza.GetFormattedTotalPrice())
+                            </strong>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code
+{
+    [Parameter] public int OrderId { get; set; }
+
+    OrderWithStatus _orderWithStatus;
+    bool _invalidOrder = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            _orderWithStatus = await HttpClient.GetFromJsonAsync<OrderWithStatus>($"{NavigationManager.BaseUri}orders/{OrderId}");
+        }
+        catch (Exception ex)
+        {
+            _invalidOrder = true;
+            Console.Error.WriteLine(ex);
+        }
+    }
+}
