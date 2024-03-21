@@ -4,47 +4,61 @@
 @inject OrderState OrderState
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 <div class="main">
-    <div class="checkout-cols">
-        <div class="checkout-order-details">
-            <h4>Review Order</h4>
-            @foreach (var pizza in Order.Pizzas)
-            {
-                <p>
-                    <strong>
-                        @(pizza.Size)"
-                        @pizza.Special.Name
-                        (£@pizza.GetFormattedTotalPrice())
-                    </strong>
-                </p>
-            }
+    <EditForm EditContext="_editContext" OnValidSubmit="PlaceOrder">
+        <div class="checkout-cols">
+            <div class="checkout-order-details">
+                <h4>Review Order</h4>
+                <OrderReview Order="Order"/>
+            </div>
 
-            <p>
-                <strong>
-                    Total Price:
-                    £@Order.GetFormattedTotalPrice()
-                </strong>
-            </p>
+            <div class="checkout-delivery-address">
+                <h4>Deliver to...</h4>
+                @if (_isError)
+                {
+                    <div class="alert alert-danger">Please enter a name and address.</div>
+                }
+                <AddressEditor Address="Order.DeliveryAddress"/>
+            </div>
         </div>
-    </div>
 
-    <button class="checkout-button btn btn-warning" @onclick="PlaceOrder" disabled="@_isSubmitting">
-        Place Order
-    </button>
+        <button class="checkout-button btn btn-warning" type="Submit" disabled="@_isError">
+            Place Order
+        </button>
+        <DataAnnotationsValidator/>
+    </EditForm>
 </div>
 
 @code
 {
+    private EditContext _editContext;
+    bool _isError = true;
     Order Order => OrderState.Order;
-    bool _isSubmitting;
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(Order.DeliveryAddress);
+        _editContext.OnFieldChanged += HandleFieldChanged;
+    }
+
+    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        _isError = !_editContext.Validate();
+        StateHasChanged();
+    }
 
     async Task PlaceOrder()
     {
-        _isSubmitting = true;
         var response = await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "orders", OrderState.Order);
         var newOrderId = await response.Content.ReadFromJsonAsync<int>();
         OrderState.ResetOrder();
         NavigationManager.NavigateTo($"/myorders/{newOrderId}");
+    }
+
+    public void Dispose()
+    {
+        _editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
