@@ -6,7 +6,7 @@
 @inject NavigationManager NavigationManager
 
 <div class="main">
-    <EditForm Model="Order.DeliveryAddress" OnSubmit="CheckSubmission">
+    <EditForm Model="Order.DeliveryAddress" OnValidSubmit="PlaceOrder">
         <div class="checkout-cols">
             <div class="checkout-order-details">
                 <h4>Review Order</h4>
@@ -26,6 +26,8 @@
         <button class="checkout-button btn btn-warning" disabled="@_isSubmitting">
             Place Order
         </button>
+        <ValidationSummary/>
+        <DataAnnotationsValidator/>
     </EditForm>
 </div>
 
@@ -34,21 +36,6 @@
     bool _isError = false;
     Order Order => OrderState.Order;
     bool _isSubmitting;
-
-    private async Task CheckSubmission(EditContext editContext)
-    {
-        _isSubmitting = true;
-        var model = editContext.Model as Address;
-        _isError = string.IsNullOrWhiteSpace(model?.Name) ||
-                   string.IsNullOrWhiteSpace(model?.Line1) ||
-                   string.IsNullOrWhiteSpace(model?.PostalCode);
-        if (!_isError)
-        {
-            await PlaceOrder();
-        }
-
-        _isSubmitting = false;
-    }
 
     async Task PlaceOrder()
     {
