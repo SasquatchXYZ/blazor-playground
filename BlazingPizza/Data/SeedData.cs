@@ -2,12 +2,12 @@ using BlazingPizza.Model;
 
 namespace BlazingPizza.Data;
 
-public class SeedData
+internal static class SeedData
 {
-    public static void Initialize(PizzaStoreContext context)
+    internal static Task InitializeAsync(PizzaStoreContext db)
     {
-        var specials = new PizzaSpecial[]
-        {
+        PizzaSpecial[] specials =
+        [
             new()
             {
                 Name = "Basic Cheese Pizza",
@@ -63,8 +63,8 @@ public class SeedData
                 BasePrice = 9.99m,
                 ImageUrl = "img/pizzas/margherita.jpg",
             }
-        };
-        context.Specials.AddRange(specials);
-        context.SaveChanges();
+        ];
+        db.Specials.AddRange(specials);
+        return db.SaveChangesAsync();
     }
 }

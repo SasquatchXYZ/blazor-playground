@@ -45,10 +45,8 @@
 
 @code
 {
-    List<OrderWithStatus> _ordersWithStatus = new();
+    List<OrderWithStatus>? _ordersWithStatus = new();
 
-    protected override async Task OnParametersSetAsync()
-    {
+    protected override async Task OnParametersSetAsync() =>
         _ordersWithStatus = await HttpClient.GetFromJsonAsync<List<OrderWithStatus>>($"{NavigationManager.BaseUri}orders");
-    }
 }

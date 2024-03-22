@@ -1,11 +1,11 @@
 using BlazingPizza.Model;
 
-namespace BlazingPizza.Services;
+namespace BlazingPizza.Orders;
 
 public class OrderState
 {
-    public bool ShowingConfigureDialog { get; private set; }
-    public Pizza ConfiguringPizza { get; private set; }
+    public bool ShowingConfigureDialog => ConfiguringPizza is not null;
+    public Pizza? ConfiguringPizza { get; private set; }
     public Order Order { get; private set; } = new();
 
     public void ShowConfigurePizzaDialog(PizzaSpecial special)
@@ -15,33 +15,23 @@ public class OrderState
             Special = special,
             SpecialId = special.Id,
             Size = Pizza.DefaultSize,
-            Toppings = new List<PizzaTopping>()
+            Toppings = []
         };
-
-        ShowingConfigureDialog = true;
     }
 
     public void CancelConfigurePizzaDialog()
     {
         ConfiguringPizza = null;
-        ShowingConfigureDialog = false;
     }
 
     public void ConfirmConfigurePizzaDialog()
     {
-        Order.Pizzas.Add(ConfiguringPizza);
+        Order.Pizzas.Add(ConfiguringPizza!);
         ConfiguringPizza = null;
-
-        ShowingConfigureDialog = false;
     }
 
-    public void RemoveConfiguredPizza(Pizza pizza)
-    {
+    public void RemoveConfiguredPizza(Pizza pizza) =>
         Order.Pizzas.Remove(pizza);
-    }
 
-    public void ResetOrder()
-    {
-        Order = new Order();
-    }
+    public void ResetOrder() => Order = new Order();
 }
