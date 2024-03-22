@@ -2,6 +2,7 @@
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 @inject OrderState OrderState
+@inject IJSRuntime JavaScript
 @using BlazingPizza.Model
 @using BlazingPizza.Orders
 
@@ -40,11 +41,14 @@
             @foreach (var configuredPizza in Order.Pizzas)
             {
                 <div class="cart-item">
-                    <div class="title">@(configuredPizza.Size)" @configuredPizza.Special.Name</div>
+                    <button type="button" class="close text-danger" aria-label="Close"
+                            @onclick="@(async () => await RemovePizzaConfirmation(configuredPizza))">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="title">@(configuredPizza.Size)" @configuredPizza.Special!.Name</div>
                     <div class="item-price">
                         @configuredPizza.GetFormattedTotalPrice()
                     </div>
-                    <a @onclick="@(() => OrderState.RemoveConfiguredPizza(configuredPizza))" class="delete-item">x</a>
                 </div>
             }
         </div>
@@ -65,11 +69,21 @@
 
 @code
 {
-    List<PizzaSpecial> _specials = new();
+    List<PizzaSpecial>? _specials = new();
     Order Order => OrderState.Order;
 
     protected override async Task OnInitializedAsync()
     {
         _specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
+    }
+
+    async Task RemovePizzaConfirmation(Pizza removePizza)
+    {
+        if (await JavaScript.InvokeAsync<bool>(
+                "confirm",
+                $"""Do you want to remove the "{removePizza.Special!.Name}" from your order?"""))
+        {
+            OrderState.RemoveConfiguredPizza(removePizza);
+        }
     }
 }
