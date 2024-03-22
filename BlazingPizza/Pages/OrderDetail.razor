@@ -2,6 +2,7 @@
 @using BlazingPizza.Model
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
+@implements IDisposable
 
 <div class="main">
     @if (_invalidOrder)
@@ -35,6 +36,12 @@
             </div>
             <div class="track-order-body">
                 <div class="track-order-details">
+                    @if (IsOrderIncomplete)
+                    {
+                        <div class="spinner-border text-danger float-right" role="status">
+                            <span class="sr-only">Checking your order status...</span>
+                        </div>
+                    }
                     @foreach (var pizza in _orderWithStatus.Order.Pizzas)
                     {
                         <p>
@@ -54,21 +61,39 @@
 @code
 {
     [Parameter] public int OrderId { get; set; }
-
     OrderWithStatus? _orderWithStatus;
-    bool _invalidOrder = false;
+    bool _invalidOrder;
+    bool IsOrderIncomplete => _orderWithStatus is null || _orderWithStatus.IsDelivered == false;
+    PeriodicTimer _timer = new(TimeSpan.FromSeconds(3));
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync() =>
+        await GetLatestOrderStatusUpdatesAsync();
+
+    protected override Task OnAfterRenderAsync(bool firstRender) =>
+        firstRender ? StartPollingTimerAsync() : Task.CompletedTask;
+
+    async Task GetLatestOrderStatusUpdatesAsync()
     {
         try
         {
             _orderWithStatus = await HttpClient.GetFromJsonAsync<OrderWithStatus>(
                 $"{NavigationManager.BaseUri}orders/{OrderId}");
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             _invalidOrder = true;
-            Console.Error.WriteLine(ex);
+            Console.Error.WriteLine(e);
         }
     }
+
+    async Task StartPollingTimerAsync()
+    {
+        while (IsOrderIncomplete && await _timer.WaitForNextTickAsync())
+        {
+            await GetLatestOrderStatusUpdatesAsync();
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose() => _timer.Dispose();
 }
