@@ -24,7 +24,9 @@ public class Pizza
     public List<PizzaTopping> Toppings { get; set; } = default!;
 
     public decimal GetBasePrice() =>
-        ((decimal) Size / (decimal) DefaultSize) * Special?.BasePrice ?? 1;
+        Special is { FixedSize: not null }
+            ? Special.BasePrice
+            : (decimal) Size / DefaultSize * Special?.BasePrice ?? 1;
 
     public decimal GetTotalPrice() => GetBasePrice();
 
@@ -34,4 +36,6 @@ public class Pizza
 
 [JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Serialization)]
 [JsonSerializable(typeof(Pizza))]
-public partial class PizzaContext : JsonSerializerContext { }
+public partial class PizzaContext : JsonSerializerContext
+{
+}
