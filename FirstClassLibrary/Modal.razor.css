@@ -47,7 +47,7 @@
 .dialog-title {
     background-color: #444;
     color: #fff2cc;
-    padding: 1.3rem 0.5rem
+    padding: 1.3rem 0.5rem;
 }
 
 .dialog-title h2 {
@@ -70,4 +70,5 @@
     align-items: center;
     background-color: #eee;
     padding: 0 1rem;
+    justify-content: space-between;
 }
