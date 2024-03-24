@@ -1,11 +1,12 @@
+@using System.Drawing
 @inject GameState State
 
 <HeadContent>
     <style>
         :root {
-        --board-bg: yellow; /** the color of the board **/
-        --player1: red;             /** the color of the board **/
-        --player2: blue;            /** the color of the board **/
+        --board-bg: @ColorTranslator.ToHtml(BoardColor);
+        --player1: @ColorTranslator.ToHtml(Player1Color);
+        --player2: @ColorTranslator.ToHtml(Player2Color);
         }
     </style>
 </HeadContent>
@@ -79,6 +80,10 @@
         _errorMessage = string.Empty;
         _pieces = new string[42];
     }
+
+    [Parameter] public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
+    [Parameter] public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
+    [Parameter] public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
 
     protected override void OnInitialized()
     {
