@@ -1,11 +1,10 @@
-﻿namespace BlazingPizza.Model
-{
-    public class PizzaTopping
-    {
-        public Topping Topping { get; set; }
+﻿namespace BlazingPizza.Model;
 
-        public int ToppingId { get; set; }
-        
-        public int PizzaId { get; set; }
-    }
+public class PizzaTopping
+{
+    public Topping Topping { get; set; } = default!;
+
+    public int ToppingId { get; set; }
+
+    public int PizzaId { get; set; }
 }

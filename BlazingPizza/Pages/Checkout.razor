@@ -1,6 +1,6 @@
 @page "/checkout"
 @using BlazingPizza.Model
-@using BlazingPizza.Services
+@using BlazingPizza.Orders
 @inject OrderState OrderState
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
@@ -18,7 +18,7 @@
                 <h4>Deliver to...</h4>
                 @if (_isError)
                 {
-                    <div class="alert alert-danger">Please enter a name and address.</div>
+                    <div class="alert alert-danger">Please enter a valid name and address.</div>
                 }
                 <AddressEditor Address="Order.DeliveryAddress"/>
             </div>
@@ -27,13 +27,14 @@
         <button class="checkout-button btn btn-warning" type="Submit" disabled="@_isError">
             Place Order
         </button>
+
         <DataAnnotationsValidator/>
     </EditForm>
 </div>
 
 @code
 {
-    private EditContext _editContext;
+    EditContext? _editContext;
     bool _isError = true;
     Order Order => OrderState.Order;
 
@@ -45,13 +46,13 @@
 
     private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
     {
-        _isError = !_editContext.Validate();
+        _isError = _editContext?.Validate() is false;
         StateHasChanged();
     }
 
     async Task PlaceOrder()
     {
-        var response = await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "orders", OrderState.Order);
+        var response = await HttpClient.PostAsJsonAsync($"{NavigationManager.BaseUri}orders", OrderState.Order);
         var newOrderId = await response.Content.ReadFromJsonAsync<int>();
         OrderState.ResetOrder();
         NavigationManager.NavigateTo($"/myorders/{newOrderId}");
@@ -59,6 +60,7 @@
 
     public void Dispose()
     {
+        if (_editContext is null) return;
         _editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
