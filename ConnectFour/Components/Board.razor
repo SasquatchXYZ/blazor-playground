@@ -1,5 +1,24 @@
-<h3>Board</h3>
+<HeadContent>
+    <style>
+        :root {
+        --board-bg: yellow; /** the color of the board **/
+        --player1: red;             /** the color of the board **/
+        --player2: blue;            /** the color of the board **/
+        }
+    </style>
+</HeadContent>
+
+<div>
+    <div class="board">
+        @for (var i = 0; i < 42; i++)
+        {
+            <span class="container">
+                <span></span>
+            </span>
+        }
+    </div>
+</div>
 
 @code {
-    
+
 }
