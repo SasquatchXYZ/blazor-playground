@@ -31,24 +31,25 @@ public class GameState
         get { return TheBoard.Count(x => x != 0); }
     }
 
-    public static readonly List<int[]> WinningPlaces = [];
+    public static readonly List<int[]> WinningPlaces = new();
 
     public static void CalculateWinningPlaces()
     {
-        // Horizontal Rows
+        // Horizontal rows
         for (byte row = 0; row < 6; row++)
         {
-            var rowCol1 = (byte) (row * 7);
-            var rowColEnd = (byte) ((row + 1) * 7 - 1);
-            var checkCol = rowCol1;
+            byte rowCol1 = (byte) (row * 7);
+            byte rowColEnd = (byte) ((row + 1) * 7 - 1);
+            byte checkCol = rowCol1;
             while (checkCol <= rowColEnd - 3)
             {
-                WinningPlaces.Add([
+                WinningPlaces.Add(new int[]
+                {
                     checkCol,
                     (byte) (checkCol + 1),
                     (byte) (checkCol + 2),
                     (byte) (checkCol + 3)
-                ]);
+                });
                 checkCol++;
             }
         }
@@ -56,55 +57,58 @@ public class GameState
         // Vertical Columns
         for (byte col = 0; col < 7; col++)
         {
-            var colRow1 = col;
-            var colRowEnd = (byte) (35 + col);
-            var checkRow = colRow1;
+            byte colRow1 = col;
+            byte colRowEnd = (byte) (35 + col);
+            byte checkRow = colRow1;
             while (checkRow <= 14 + col)
             {
-                WinningPlaces.Add([
+                WinningPlaces.Add(new int[]
+                {
                     checkRow,
                     (byte) (checkRow + 7),
                     (byte) (checkRow + 14),
                     (byte) (checkRow + 21)
-                ]);
+                });
                 checkRow += 7;
             }
         }
 
-        // Forward slash diagonal "/"
+        // forward slash diagonal "/"
         for (byte col = 0; col < 4; col++)
         {
-            // Starting column must be 0-3
-            var colRow1 = (byte) (21 + col);
-            var colRowEnd = (byte) (35 + col);
-            var checkPos = colRow1;
+            // starting column must be 0-3
+            byte colRow1 = (byte) (21 + col);
+            byte colRowEnd = (byte) (35 + col);
+            byte checkPos = colRow1;
             while (checkPos <= colRowEnd)
             {
-                WinningPlaces.Add([
+                WinningPlaces.Add(new int[]
+                {
                     checkPos,
                     (byte) (checkPos - 6),
                     (byte) (checkPos - 12),
                     (byte) (checkPos - 18)
-                ]);
+                });
                 checkPos += 7;
             }
         }
 
-        // Back slash diagonal "\"
+        // back slash diaganol "\"
         for (byte col = 0; col < 4; col++)
         {
             // starting column must be 0-3
-            var colRow1 = (byte) (0 + col);
-            var colRowEnd = (byte) (14 + col);
-            var checkPos = colRow1;
+            byte colRow1 = (byte) (0 + col);
+            byte colRowEnd = (byte) (14 + col);
+            byte checkPos = colRow1;
             while (checkPos <= colRowEnd)
             {
-                WinningPlaces.Add([
+                WinningPlaces.Add(new int[]
+                {
                     checkPos,
                     (byte) (checkPos + 8),
                     (byte) (checkPos + 16),
                     (byte) (checkPos + 24)
-                ]);
+                });
                 checkPos += 7;
             }
         }
@@ -162,14 +166,14 @@ public class GameState
         return ConvertLandingSpotToRow(landingSpot);
     }
 
-    public List<int> TheBoard { get; private set; } = new(new int[42]);
+    public List<int> TheBoard { get; private set; } = new List<int>(new int[42]);
 
     public void ResetBoard()
     {
         TheBoard = new List<int>(new int[42]);
     }
 
-    private static byte ConvertLandingSpotToRow(int landingSpot)
+    private byte ConvertLandingSpotToRow(int landingSpot)
     {
         return (byte) (Math.Floor(landingSpot / (decimal) 7) + 1);
     }
