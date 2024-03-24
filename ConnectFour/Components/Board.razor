@@ -4,9 +4,9 @@
 <HeadContent>
     <style>
         :root {
-        --board-bg: @ColorTranslator.ToHtml(BoardColor);
-        --player1: @ColorTranslator.ToHtml(Player1Color);
-        --player2: @ColorTranslator.ToHtml(Player2Color);
+            --board-bg: @ColorTranslator.ToHtml(BoardColor);
+            --player1: @ColorTranslator.ToHtml(Player1Color);
+            --player2: @ColorTranslator.ToHtml(Player2Color);
         }
     </style>
 </HeadContent>
@@ -37,7 +37,7 @@
     </div>
     @for (var i = 0; i < 42; i++)
     {
-        <span class="@_pieces[1]"></span>
+        <span class="@_pieces[i]"></span>
     }
 </div>
 
@@ -49,6 +49,15 @@
     private string CurrentTurn => (_winnerMessage == string.Empty) ? $"Player {State.PlayerTurn}'s Turn" : "";
     private string ResetStyle => (_winnerMessage == string.Empty) ? "display: none;" : "";
 
+    [Parameter] public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
+    [Parameter] public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
+    [Parameter] public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
+
+    protected override void OnInitialized()
+    {
+        State.ResetBoard();
+    }
+
     private void PlayPiece(byte col)
     {
         _errorMessage = string.Empty;
@@ -59,7 +68,7 @@
             var landingRow = State.PlayPiece(col);
             _pieces[turn] = $"player{player} col{col} drop{landingRow}";
         }
-        catch (Exception ex)
+        catch (ArgumentException ex)
         {
             _errorMessage = ex.Message;
         }
@@ -79,15 +88,6 @@
         _winnerMessage = string.Empty;
         _errorMessage = string.Empty;
         _pieces = new string[42];
-    }
-
-    [Parameter] public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
-    [Parameter] public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
-    [Parameter] public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
-
-    protected override void OnInitialized()
-    {
-        State.ResetBoard();
     }
 
 }
