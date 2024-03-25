@@ -1,20 +1,18 @@
-﻿@page "/counter"
+@page "/counter"
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
+<p>The counter value is @_currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCounter">Increment Counter</button>
 
-<p role="status">Current count: @currentCount</p>
+@code
+{
+    private int _currentCount = 42;
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    private void IncrementCounter()
     {
-        currentCount++;
+        _currentCount++;
     }
-
 }
