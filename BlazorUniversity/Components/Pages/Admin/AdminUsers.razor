@@ -1,9 +1,16 @@
 @page "/admin/users"
+@rendermode InteractiveServer
 
 <PageTitle>Users</PageTitle>
 
 <h2>Users</h2>
 
-@code {
+<label>Name = @_name</label>
+<br/>
+<input @bind-value="_name" @bind-value:event="oninput"/>
 
+@code {
+    private string? _name;
+    private DateTime? DateOfBirth;
+    private decimal? BankBalance;
 }
