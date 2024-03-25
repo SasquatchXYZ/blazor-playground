@@ -9,8 +9,12 @@
 <br/>
 <input @bind-value="_name" @bind-value:event="oninput"/>
 
+<label>Date of birth = @_dateOfBirth?.ToString("MMMM d, yyyy")</label>
+<br/>
+<input @bind-value="@_dateOfBirth" @bind-value:format="yyyy-MM-dd"/>
+
 @code {
     private string? _name;
-    private DateTime? DateOfBirth;
-    private decimal? BankBalance;
+    private DateTime? _dateOfBirth;
+    private decimal? _bankBalance;
 }
