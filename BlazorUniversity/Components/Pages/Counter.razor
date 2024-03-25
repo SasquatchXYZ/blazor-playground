@@ -7,6 +7,8 @@
 <p>The counter value is @_currentCount</p>
 <button class="btn btn-primary" @onclick="IncrementCounter">Increment Counter</button>
 
+<MySecondComponent CurrentCounterValue="_currentCount"/>
+
 @code
 {
     private int _currentCount = 42;
