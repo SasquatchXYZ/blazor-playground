@@ -1,4 +1,5 @@
 @page "/admin/users"
+@using System.Globalization
 @rendermode InteractiveServer
 
 <PageTitle>Users</PageTitle>
@@ -8,13 +9,20 @@
 <label>Name = @_name</label>
 <br/>
 <input @bind-value="_name" @bind-value:event="oninput"/>
+<br/>
 
 <label>Date of birth = @_dateOfBirth?.ToString("MMMM d, yyyy")</label>
 <br/>
 <input @bind-value="@_dateOfBirth" @bind-value:format="yyyy-MM-dd"/>
+<br/>
+
+<label>Bank balance = @_bankBalance</label>
+<br/>
+<input @bind-value="@_bankBalance" @bind-value:culture="@_turkish"/>
 
 @code {
     private string? _name;
     private DateTime? _dateOfBirth;
     private decimal? _bankBalance;
+    private CultureInfo _turkish = CultureInfo.GetCultureInfo("tr-TR");
 }
