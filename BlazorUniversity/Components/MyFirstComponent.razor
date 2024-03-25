@@ -1,8 +1,18 @@
 <div>
-    CurrentCounterValue in MyFirstComponent is @_CurrentCounterValue
+    CurrentCounterValue in MyFirstComponent is @CurrentCounterValue
 </div>
+
+<button @onclick="UpdateCurrentCounterValue">Update</button>
 
 @code
 {
-    private int _CurrentCounterValue = 42;
+    [Parameter] public int CurrentCounterValue { get; set; }
+
+    [Parameter] public EventCallback<int> CurrentCounterValueChanged { get; set; }
+
+    async Task UpdateCurrentCounterValue()
+    {
+        CurrentCounterValue++;
+        await CurrentCounterValueChanged.InvokeAsync(CurrentCounterValue);
+    }
 }
