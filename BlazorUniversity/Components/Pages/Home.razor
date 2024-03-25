@@ -1,9 +1,21 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+Last multiple of three = @_lastMultipleOfThree
 
 <MyFirstComponent/>
+<Counter OnMultipleOfThree="@UpdateLastMultipleOfThreeValue"/>
+
+@code
+{
+    int _lastMultipleOfThree = 0;
+
+    private void UpdateLastMultipleOfThreeValue(int value)
+    {
+        _lastMultipleOfThree = value;
+    }
+}
