@@ -12,9 +12,13 @@
 @code
 {
     private int _currentCount = 42;
+    [Parameter]
+    public EventCallback<int> OnMultipleOfThree { get; set; }
 
-    private void IncrementCounter()
+    private async Task IncrementCounter()
     {
         _currentCount++;
+        if (_currentCount % 3 == 0)
+            await OnMultipleOfThree.InvokeAsync(_currentCount);
     }
 }
