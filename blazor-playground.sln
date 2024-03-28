@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorUniversity", "BlazorU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorUniversityTwo", "BlazorUniversityTwo\BlazorUniversityTwo.csproj", "{0D997A2A-378E-4414-A6BA-796E2C3EA857}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURenderTree", "BURenderTree\BURenderTree.csproj", "{52F49410-29D2-4804-B2EF-C1A6593F4594}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{0D997A2A-378E-4414-A6BA-796E2C3EA857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D997A2A-378E-4414-A6BA-796E2C3EA857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D997A2A-378E-4414-A6BA-796E2C3EA857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F49410-29D2-4804-B2EF-C1A6593F4594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F49410-29D2-4804-B2EF-C1A6593F4594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F49410-29D2-4804-B2EF-C1A6593F4594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F49410-29D2-4804-B2EF-C1A6593F4594}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
