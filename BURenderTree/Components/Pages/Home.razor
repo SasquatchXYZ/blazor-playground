@@ -18,7 +18,7 @@ Welcome to your new app.
 <ol>
     @foreach (var person in _people)
     {
-        <li class="card">
+        <li class="card" @key="person">
             <img class="card-img-top" src="https://randomuser.me/api/portraits/men/@(person.Id).jpg"/>
             <div class="card-body">
                 <h5 class="card-title">
