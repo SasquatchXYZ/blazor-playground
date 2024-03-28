@@ -13,8 +13,22 @@
 </head>
 
 <body>
+<button id="setValues">Set values</button>
 <Routes/>
 <script src="_framework/blazor.web.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script>
+    $(function (){
+        $('#setValues').click(function (){
+            $('li').each(function (){
+                var $elem = $(this);
+                $elem.attr('originalValue', $elem.text());
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

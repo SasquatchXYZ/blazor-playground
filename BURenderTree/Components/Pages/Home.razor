@@ -1,7 +1,28 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<button @onclick="@ChangeData">Change data</button>
+
+<ol>
+    @foreach (var item in _items)
+    {
+        <li>@item</li>
+    }
+</ol>
+
+@code
+{
+    List<string> _items = new() { "One", "Two", "3" };
+
+    void ChangeData()
+    {
+        _items[0] = "1";
+        _items[1] = "2";
+        _items.Add("4");
+    }
+}
