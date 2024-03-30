@@ -23,3 +23,24 @@
         </TabPage>
     </ChildContent>
 </TabControl>
+
+<h1>A generic list of Person</h1>
+<DataList Data="@_people">
+    @context.Salutation @context.FamilyName @context.GivenName
+</DataList>
+
+@code
+{
+    private IEnumerable<Person>? _people;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _people = new[]
+        {
+            new Person("Mr", "Bob", "Geldof"),
+            new Person("Mrs", "Angela", "Rippon"),
+            new Person("Mr", "Freddie", "Mercury")
+        };
+    }
+}
