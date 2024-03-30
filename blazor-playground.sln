@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyModalBlazorApp", "MyModal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectFour", "ConnectFour\ConnectFour.csproj", "{4A80ABF6-647B-4053-AA6B-7723FADB4672}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURouting", "BURouting\BURouting.csproj", "{1A5BC5B9-4379-4033-8EC6-D9C52F092159}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{4A80ABF6-647B-4053-AA6B-7723FADB4672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A80ABF6-647B-4053-AA6B-7723FADB4672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A80ABF6-647B-4053-AA6B-7723FADB4672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5BC5B9-4379-4033-8EC6-D9C52F092159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5BC5B9-4379-4033-8EC6-D9C52F092159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5BC5B9-4379-4033-8EC6-D9C52F092159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5BC5B9-4379-4033-8EC6-D9C52F092159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

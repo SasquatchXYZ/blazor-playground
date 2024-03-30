@@ -1,0 +1,39 @@
+﻿@page "/counter"
+@page "/counter/{CurrentCount:int?}"
+
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Increment</button>
+<ul>
+    <li>><a href="/counter/42">Navigate to /counter/42</a></li>
+    <li>><a href="/counter/123">Navigate to /counter/123</a></li>
+    <li>><a href="/counter/">Navigate to /counter</a></li>
+</ul>
+
+@code {
+    [Parameter] public int? CurrentCount { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CurrentCount ??= 1;
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameterView)
+    {
+        await base.SetParametersAsync(parameterView);
+        CurrentCount ??= 1;
+    }
+
+    private void IncrementCount()
+    {
+        CurrentCount++;
+    }
+
+}
