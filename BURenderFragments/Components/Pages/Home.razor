@@ -25,8 +25,36 @@
 </TabControl>
 
 <h1>A generic list of Person</h1>
+<!-- A Simple List -->
 <DataList Data="@_people">
-    @context.Salutation @context.FamilyName @context.GivenName
+    <ItemTemplate>
+        <li key="context">@context.Salutation @context.FamilyName @context.GivenName</li>
+    </ItemTemplate>
+</DataList>
+
+<!-- An HTML Table -->
+<DataList Data="@_people">
+    <ListTemplate Context="listOfPeople">
+        <table border="1" cellpadding="4">
+            <thead>
+            <tr>
+                <th>Salutation</th>
+                <th>Given Name</th>
+                <th>Family Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @listOfPeople
+            </tbody>
+        </table>
+    </ListTemplate>
+    <ItemTemplate Context="person">
+        <tr @key="@person">
+            <td>@person.Salutation</td>
+            <td>@person.GivenName</td>
+            <td>@person.FamilyName</td>
+        </tr>
+    </ItemTemplate>
 </DataList>
 
 @code
