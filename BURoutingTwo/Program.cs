@@ -1,4 +1,4 @@
-using BuRoutingTwo.Components;
+using BURoutingTwo.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

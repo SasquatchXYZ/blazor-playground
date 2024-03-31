@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURenderTree", "BURenderTre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURenderFragments", "BURenderFragments\BURenderFragments.csproj", "{81DE14B1-596F-4320-BE77-79057E7DF6FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuRoutingTwo", "BuRoutingTwo\BuRoutingTwo.csproj", "{3D5851EC-2975-48F5-8B48-08145D96B9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURoutingTwo", "BURoutingTwo\BURoutingTwo.csproj", "{3D5851EC-2975-48F5-8B48-08145D96B9CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURoutingThree", "BURoutingThree\BURoutingThree.csproj", "{FE368840-E7F1-4260-B071-A65BD4FC90DA}"
 EndProject
