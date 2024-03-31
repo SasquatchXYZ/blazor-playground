@@ -1,7 +1,19 @@
 ﻿@page "/"
 
 <PageTitle>Home</PageTitle>
+<h1>Status: @_status</h1>
+<EditForm Model="@_person" OnSubmit="@FormSubmitted">
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</EditForm>
 
-<h1>Hello, world!</h1>
+@code
+{
+    string _status = "Not submitted";
+    readonly Person _person = new();
 
-Welcome to your new app.
+    void FormSubmitted()
+    {
+        _status = "Form submitted";
+        // Post data to the server, etc
+    }
+}
