@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BUCustomValidation;
+namespace BUCustomValidation.Validators;
 
 public class FluentValidationValidator : ComponentBase
 {
