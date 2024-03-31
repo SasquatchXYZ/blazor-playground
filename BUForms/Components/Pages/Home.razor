@@ -1,19 +1,22 @@
 ﻿@page "/"
+@using System.Drawing
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
-<h1>Status: @_status</h1>
-<EditForm Model="@_person" OnSubmit="@FormSubmitted">
-    <input type="submit" value="Submit" class="btn btn-primary"/>
+
+<EditForm Model="@_currentPerson">
+    <InputColor @bind-Value="_currentPerson.FavoriteColor"/>
 </EditForm>
+
+Favorite colour is @_currentPerson.FavoriteColor
+<div style="width:100px;height:100px;background-color:@ColorAsHex"/>
 
 @code
 {
-    string _status = "Not submitted";
-    readonly Person _person = new();
-
-    void FormSubmitted()
+    Person _currentPerson = new Person
     {
-        _status = "Form submitted";
-        // Post data to the server, etc
-    }
+        FavoriteColor = Color.Green
+    };
+
+    string ColorAsHex => InputColor.ColorToString(_currentPerson.FavoriteColor);
 }
