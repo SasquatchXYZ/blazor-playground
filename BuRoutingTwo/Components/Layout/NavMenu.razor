@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@rendermode InteractiveServer
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">BuRoutingTwo</a>
     </div>
@@ -7,25 +9,29 @@
 <input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <select @bind="_matchMode" class="form-control">
+        <option value="@NavLinkMatch.All">All</option>
+        <option value="@NavLinkMatch.Prefix">Prefix</option>
+    </select>
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="" Match="@NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
 
         <li class="px-3 nav-item">
-            <NavLink class="nav-link" href="counter" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="counter" Match="@_matchMode">
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
             </NavLink>
             <ul class="nav flex-column">
                 <li class="px-3 nav-item">
-                    <NavLink class="nav-link" href="counter/1" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="counter/1" Match="@NavLinkMatch.All">
                         <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter/1
                     </NavLink>
                 </li>
                 <li class="px-3 nav-item">
-                    <NavLink class="nav-link" href="counter/2" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="counter/2" Match="@NavLinkMatch.All">
                         <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter/2
                     </NavLink>
                 </li>
@@ -33,9 +39,14 @@
         </li>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="weather" Match="@NavLinkMatch.All">
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
             </NavLink>
         </div>
     </nav>
 </div>
+
+@code
+{
+    NavLinkMatch _matchMode = NavLinkMatch.All;
+}
