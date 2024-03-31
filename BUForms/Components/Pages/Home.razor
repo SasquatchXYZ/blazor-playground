@@ -4,7 +4,14 @@
 
 <PageTitle>Home</PageTitle>
 
-<EditForm Model="@_currentPerson">
+@if (LastSubmitResult is not null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+
+<EditForm Model="@_currentPerson" OnValidSubmit="ValidFormSubmitted" OnInvalidSubmit="InvalidFormSubmitted">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="form-group">
@@ -34,5 +41,17 @@ Favorite colour is @_currentPerson.FavoriteColor
         FavoriteColor = Color.Green
     };
 
+    string? LastSubmitResult;
+
     string ColorAsHex => InputColor.ColorToString(_currentPerson.FavoriteColor);
+
+    void ValidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "OnValidSubmit was executed";
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "OnInvalidSubmit was executed";
+    }
 }
