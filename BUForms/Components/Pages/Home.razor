@@ -5,6 +5,7 @@
 <PageTitle>Home</PageTitle>
 
 <EditForm Model="@_currentPerson">
+    <DataAnnotationsValidator/>
     <div class="form-group">
         <label for="Name">Name</label>
         <InputText @bind-Value="_currentPerson.Name" class="form-control" id="Name"/>
