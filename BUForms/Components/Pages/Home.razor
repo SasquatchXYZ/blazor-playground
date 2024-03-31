@@ -11,7 +11,7 @@
     </h2>
 }
 
-<EditForm Model="@_currentPerson" OnValidSubmit="ValidFormSubmitted" OnInvalidSubmit="InvalidFormSubmitted">
+<EditForm Model="@_currentPerson" OnSubmit="@FormSubmitted">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="form-group">
@@ -45,13 +45,11 @@ Favorite colour is @_currentPerson.FavoriteColor
 
     string ColorAsHex => InputColor.ColorToString(_currentPerson.FavoriteColor);
 
-    void ValidFormSubmitted(EditContext editContext)
+    void FormSubmitted(EditContext editContext)
     {
-        LastSubmitResult = "OnValidSubmit was executed";
-    }
-
-    void InvalidFormSubmitted(EditContext editContext)
-    {
-        LastSubmitResult = "OnInvalidSubmit was executed";
+        var formIsValid = editContext.Validate();
+        LastSubmitResult = formIsValid
+            ? "Success - form was valid"
+            : "Failure - form was invalid";
     }
 }
