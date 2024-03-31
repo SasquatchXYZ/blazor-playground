@@ -6,13 +6,16 @@
 
 <EditForm Model="@_currentPerson">
     <DataAnnotationsValidator/>
+    <ValidationSummary/>
     <div class="form-group">
         <label for="Name">Name</label>
         <InputText @bind-Value="_currentPerson.Name" class="form-control" id="Name"/>
+        <ValidationMessage For="() => _currentPerson.Name"/>
     </div>
     <div class="form-group">
         <label for="Age">Age</label>
         <InputNumber @bind-Value="_currentPerson.Age" class="form-control" id="Age"/>
+        <ValidationMessage For="() => _currentPerson.Age"/>
     </div>
     <div class="form-group">
         <label for="FavoriteColor">Favorite Color</label>
