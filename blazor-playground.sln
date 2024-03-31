@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BURoutingThree", "BURouting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUForms", "BUForms\BUForms.csproj", "{95019F74-F954-45B3-8A9C-BD4DD157BAAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUCustomValidation", "BUCustomValidation\BUCustomValidation.csproj", "{892951A6-3C0A-4755-826B-406E995E6A97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +92,9 @@ Global
 		{95019F74-F954-45B3-8A9C-BD4DD157BAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95019F74-F954-45B3-8A9C-BD4DD157BAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95019F74-F954-45B3-8A9C-BD4DD157BAAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{892951A6-3C0A-4755-826B-406E995E6A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{892951A6-3C0A-4755-826B-406E995E6A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{892951A6-3C0A-4755-826B-406E995E6A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{892951A6-3C0A-4755-826B-406E995E6A97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
