@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BULifecycleTest", "BULifecy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUDependenciesTransient", "BUDependenciesTransient\BUDependenciesTransient.csproj", "{DFDBFFAC-7D95-4171-A552-64E8F51DC325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUDependenciesSingleton", "BUDependenciesSingleton\BUDependenciesSingleton.csproj", "{2217F99F-BD06-497C-964A-5C035B52EDCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,5 +146,9 @@ Global
 		{DFDBFFAC-7D95-4171-A552-64E8F51DC325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFDBFFAC-7D95-4171-A552-64E8F51DC325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFDBFFAC-7D95-4171-A552-64E8F51DC325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
