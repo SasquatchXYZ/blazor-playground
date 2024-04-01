@@ -1,10 +1,13 @@
 using BUStaticDotnetMethodsJs.Components;
+using BUStaticDotnetMethodsJs.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+var javaScriptSettings = builder.Configuration.GetSection("JavaScript").Get<JavaScriptSettings>();
+JavaScriptConfiguration.SetSettings(javaScriptSettings);
 
 var app = builder.Build();
 
