@@ -4,8 +4,22 @@
 
 <h1>Blazor Web Chat</h1>
 
-<EditForm Model="@this">
+<EditForm Model="@this" OnValidSubmit="@SendMessage">
     <DataAnnotationsValidator/>
+    <div class="row">
+        <textarea class="form-control" rows="20" readonly="">
+@if (ChatWindowText is not null)
+ {
+        @foreach (var chatLine in ChatWindowText)
+{
+@chatLine
+ }
+}
+ else
+ {
+}
+</textarea>
+    </div>
     <div class="mt-1 row">
         <div class="col-3">
             <InputText class="form-control" placeholder="Name" @bind-Value="Name" maxlength="20"/>
