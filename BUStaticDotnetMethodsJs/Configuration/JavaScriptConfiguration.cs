@@ -1,3 +1,5 @@
+using Microsoft.JSInterop;
+
 namespace BUStaticDotnetMethodsJs.Configuration;
 
 public static class JavaScriptConfiguration
@@ -9,5 +11,6 @@ public static class JavaScriptConfiguration
         Settings = settings;
     }
 
+    [JSInvokable("GetSettings")]
     public static JavaScriptSettings GetSettings() => Settings;
 }
