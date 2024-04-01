@@ -1,7 +1,43 @@
 ﻿@page "/"
+@using System.Diagnostics
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Text received</h1>
+<ul>
+    @foreach (var text in _textHistory)
+    {
+        <li>@text</li>
+    }
+</ul>
 
-Welcome to your new app.
+@code
+{
+    List<string> _textHistory = new();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            // This code has a memory leak and will be fixed in a future exercise
+            var dotNetReference = DotNetObjectReference.Create(this);
+            JsRuntime.InvokeVoidAsync("BlazorUniversity.startRandomGenerator", dotNetReference);
+        }
+    }
+
+    [JSInvokable("AddText")]
+    public void AddTextToTextHistory(string text)
+    {
+        _textHistory.Add(text);
+        while (_textHistory.Count() > 10)
+        {
+            _textHistory.RemoveAt(0);
+        }
+
+        StateHasChanged();
+        Debug.WriteLine("DotNet: Received " + text);
+    }
+}
