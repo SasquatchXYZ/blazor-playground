@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUForms", "BUForms\BUForms.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUCustomValidation", "BUCustomValidation\BUCustomValidation.csproj", "{892951A6-3C0A-4755-826B-406E995E6A97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUCallingDotnetFromJs", "BUCallingDotnetFromJs\BUCallingDotnetFromJs.csproj", "{35D814C4-5CD3-41B2-B1F4-3411EE0A021E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,5 +98,9 @@ Global
 		{892951A6-3C0A-4755-826B-406E995E6A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{892951A6-3C0A-4755-826B-406E995E6A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{892951A6-3C0A-4755-826B-406E995E6A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D814C4-5CD3-41B2-B1F4-3411EE0A021E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D814C4-5CD3-41B2-B1F4-3411EE0A021E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D814C4-5CD3-41B2-B1F4-3411EE0A021E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D814C4-5CD3-41B2-B1F4-3411EE0A021E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
