@@ -1,7 +1,25 @@
 ﻿@page "/"
+@using BUCallingJsFromDotnet.Models
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<button @onclick="ButtonClicked">Perform interop</button>
 
-Welcome to your new app.
+@code
+{
+    private async Task ButtonClicked()
+    {
+        var person = new Person
+        {
+            Salutation = "Mr",
+            GivenName = "Chuck",
+            FamilyName = "Norris"
+        };
+        person.PhoneNumbers.Add(new KeyValuePair<string, string>("Home", "+44 (0)121 999 9999"));
+        person.PhoneNumbers.Add(new KeyValuePair<string, string>("Work", "+44 (0)121 999 9999"));
+
+        await JsRuntime.InvokeVoidAsync("console.log", "Hello", person);
+    }
+}
