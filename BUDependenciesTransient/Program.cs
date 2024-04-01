@@ -1,10 +1,12 @@
 using BUDependenciesTransient.Components;
+using BUDependenciesTransient.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddTransient<IMyTransientService, MyTransientService>();
 
 var app = builder.Build();
 
