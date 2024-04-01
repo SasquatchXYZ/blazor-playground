@@ -1,0 +1,12 @@
+@inject IJSRuntime JsRuntime
+
+@code {
+    [Parameter] public ElementReference Control { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JsRuntime.InvokeVoidAsync("BlazorUniversity.setFocus", Control);
+    }
+
+}
