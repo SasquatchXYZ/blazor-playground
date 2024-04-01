@@ -1,7 +1,13 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1 @ref="_myElementReference">Hello, world!</h1>
 
 Welcome to your new app.
+
+@code
+{
+    ElementReference _myElementReference;
+}
