@@ -17,16 +17,17 @@
 @code
 {
     List<string> _textHistory = new();
+    int _generatorHandle = -1;
     DotNetObjectReference<Home>? _objectReference;
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
             // This code has a memory leak and will be fixed in a future exercise
             _objectReference = DotNetObjectReference.Create(this);
-            JsRuntime.InvokeVoidAsync("BlazorUniversity.startRandomGenerator", _objectReference);
+            _generatorHandle = await JsRuntime.InvokeAsync<int>("BlazorUniversity.startRandomGenerator", _objectReference);
         }
     }
 
@@ -43,9 +44,14 @@
         Debug.WriteLine("DotNet: Received " + text);
     }
 
-    public void Dispose()
+    public async void Dispose()
     {
         GC.SuppressFinalize(this);
+        if (_generatorHandle != -1)
+        {
+            // Cancel our callback before disposing our object reference
+            await JsRuntime.InvokeVoidAsync("BlazorUniversity.stopRandomGenerator", _generatorHandle);
+        }
 
         // Now dispose our object reference so our component can be garbace collected
         _objectReference?.Dispose();
