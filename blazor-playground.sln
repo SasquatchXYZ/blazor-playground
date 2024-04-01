@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUCallingJsFromDotnet", "BU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUCallingJsFromDotnetTwo", "BUCallingJsFromDotnetTwo\BUCallingJsFromDotnetTwo.csproj", "{41BCB984-3756-46FD-96B3-2280D50CF2EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUPassingHtmlElementReferences", "BUPassingHtmlElementReferences\BUPassingHtmlElementReferences.csproj", "{60B266BF-D72E-4BAB-BE86-2D4014859DAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,5 +128,9 @@ Global
 		{41BCB984-3756-46FD-96B3-2280D50CF2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41BCB984-3756-46FD-96B3-2280D50CF2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41BCB984-3756-46FD-96B3-2280D50CF2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B266BF-D72E-4BAB-BE86-2D4014859DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B266BF-D72E-4BAB-BE86-2D4014859DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B266BF-D72E-4BAB-BE86-2D4014859DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B266BF-D72E-4BAB-BE86-2D4014859DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
