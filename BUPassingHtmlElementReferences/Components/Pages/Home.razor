@@ -1,14 +1,22 @@
 ﻿@page "/"
+@inject IJSRuntime JsRuntime
 @rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1 @ref="_myElementReference">Hello, world!</h1>
-Enter your name: <input autofocus/>
+Enter your name: <input @ref="_referenceToInputControl"/>
 <br/>
 Welcome to your new app.
 
 @code
 {
     ElementReference _myElementReference;
+    ElementReference _referenceToInputControl;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JsRuntime.InvokeVoidAsync("BlazorUniversity.setFocus", _referenceToInputControl);
+    }
 }
