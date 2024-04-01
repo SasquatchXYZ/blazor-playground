@@ -7,8 +7,20 @@
 
 <button @onclick="ButtonClicked">Perform interop</button>
 
+<p>
+    Status: @_result
+</p>
+<p>
+    <button @onclick="ShowConfirm">Confirm popup</button>
+</p>
+<p>
+    <button @onclick="ShowPrompt">Prompt popup</button>
+</p>
+
 @code
 {
+    private string? _result;
+
     private async Task ButtonClicked()
     {
         var person = new Person
@@ -21,5 +33,17 @@
         person.PhoneNumbers.Add(new KeyValuePair<string, string>("Work", "+44 (0)121 999 9999"));
 
         await JsRuntime.InvokeVoidAsync("console.log", "Hello", person);
+    }
+
+    private async Task ShowConfirm()
+    {
+        var confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+        _result = confirmed ? "You clicked OK" : "You clicked Cancel";
+    }
+
+    private async Task ShowPrompt()
+    {
+        var name = await JsRuntime.InvokeAsync<string>("prompt", "What is your name?");
+        _result = "Your name is: " + name;
     }
 }
