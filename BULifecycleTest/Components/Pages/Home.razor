@@ -1,7 +1,44 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1 @ref="_myElementReference">Hello, world!</h1>
+<button @onclick="ButtonClicked">Show Serialized Reference</button>
+
+<code>
+    <ul>
+        @foreach (var entry in _logs)
+        {
+            <pre>@entry</pre>
+        }
+    </ul>
+</code>
 
 Welcome to your new app.
+
+@code
+{
+    List<string> _logs = new();
+    ElementReference _myElementReference;
+
+    protected override void OnInitialized()
+    {
+        ShowSerializedReference("OnInitialized: ");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        ShowSerializedReference("OnAfterRender: ");
+    }
+
+    private void ButtonClicked()
+    {
+        ShowSerializedReference("Button Clicked: ");
+    }
+
+    private void ShowSerializedReference(string prefix)
+    {
+        _logs.Add(prefix + System.Text.Json.JsonSerializer.Serialize(_myElementReference));
+    }
+}
