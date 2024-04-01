@@ -4,7 +4,8 @@
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>
-Enter your name: <input autofocus/>
+Enter your name: <input @ref="_referenceToInputControl"/>
+<Autofocus GetControl="@(() => _referenceToInputControl)"/>
 <br/>
 <p>This component demonstrates showing data.</p>
 
@@ -41,6 +42,7 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
+    ElementReference _referenceToInputControl;
 
     protected override async Task OnInitializedAsync()
     {

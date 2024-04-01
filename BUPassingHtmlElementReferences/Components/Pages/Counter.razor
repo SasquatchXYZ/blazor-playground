@@ -4,7 +4,8 @@
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
-Enter your name: <input autofocus/>
+Enter your name: <input @ref="_referenceToInputControl"/>
+<Autofocus GetControl="@(() => _referenceToInputControl)"/>
 <br/>
 <p role="status">Current count: @currentCount</p>
 
@@ -12,6 +13,7 @@ Enter your name: <input autofocus/>
 
 @code {
     private int currentCount = 0;
+    ElementReference _referenceToInputControl;
 
     private void IncrementCount()
     {
