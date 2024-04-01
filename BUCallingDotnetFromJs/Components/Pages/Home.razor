@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using System.Diagnostics
 @inject IJSRuntime JsRuntime
+@implements IDisposable
 @rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
@@ -16,6 +17,7 @@
 @code
 {
     List<string> _textHistory = new();
+    DotNetObjectReference<Home>? _objectReference;
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -23,8 +25,8 @@
         if (firstRender)
         {
             // This code has a memory leak and will be fixed in a future exercise
-            var dotNetReference = DotNetObjectReference.Create(this);
-            JsRuntime.InvokeVoidAsync("BlazorUniversity.startRandomGenerator", dotNetReference);
+            _objectReference = DotNetObjectReference.Create(this);
+            JsRuntime.InvokeVoidAsync("BlazorUniversity.startRandomGenerator", _objectReference);
         }
     }
 
@@ -39,5 +41,13 @@
 
         StateHasChanged();
         Debug.WriteLine("DotNet: Received " + text);
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+
+        // Now dispose our object reference so our component can be garbace collected
+        _objectReference?.Dispose();
     }
 }
