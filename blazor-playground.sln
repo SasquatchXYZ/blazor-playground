@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUDependenciesTransient", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUDependenciesSingleton", "BUDependenciesSingleton\BUDependenciesSingleton.csproj", "{2217F99F-BD06-497C-964A-5C035B52EDCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUDependecyScopeComparison", "BUDependecyScopeComparison\BUDependecyScopeComparison.csproj", "{9934166E-E572-4175-AC86-6528DE6C4A70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,5 +152,9 @@ Global
 		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2217F99F-BD06-497C-964A-5C035B52EDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9934166E-E572-4175-AC86-6528DE6C4A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9934166E-E572-4175-AC86-6528DE6C4A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9934166E-E572-4175-AC86-6528DE6C4A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9934166E-E572-4175-AC86-6528DE6C4A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
