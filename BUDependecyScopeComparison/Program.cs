@@ -1,10 +1,14 @@
 using BUDependecyScopeComparison.Components;
+using BUDependecyScopeComparison.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddTransient<IMyTransientService, MyTransientService>();
+builder.Services.AddScoped<IMyScopedService, MyScopedService>();
+builder.Services.AddSingleton<IMySingletonService, MySingletonService>();
 
 var app = builder.Build();
 
