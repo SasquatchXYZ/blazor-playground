@@ -1,10 +1,12 @@
 using BUOwningComponentBase.Components;
+using BUOwningComponentBase.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<WeatherForecastService>();
 
 var app = builder.Build();
 
