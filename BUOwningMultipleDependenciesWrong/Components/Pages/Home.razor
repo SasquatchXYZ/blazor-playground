@@ -2,6 +2,15 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<input id="show-component" type="checkbox" @bind="_showComponent"/>
+<label for="show-component">Show Component</label>
 
-Welcome to your new app.
+@if (_showComponent)
+{
+    <MyOwningComponent/>
+}
+
+@code
+{
+    bool _showComponent = false;
+}
