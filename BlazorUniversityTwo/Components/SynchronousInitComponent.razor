@@ -1,0 +1,12 @@
+<p>Sync rendered by thread @_idOfRenderingThread</p>
+
+@code {
+    int _idOfRenderingThread;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _idOfRenderingThread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+    }
+
+}

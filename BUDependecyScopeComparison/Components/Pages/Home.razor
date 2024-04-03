@@ -1,0 +1,81 @@
+﻿@page "/"
+@page "/{Continue}"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Home</PageTitle>
+
+<h1>Step @_currentStep: @CurrentStepName</h1>
+@if (_currentStep % 2 == 1)
+{
+    <MyStandardComponent Caption="Component 1"/>
+    <MyStandardComponent Caption="Component 2"/>
+}
+else
+{
+    <MyStandardComponent Caption="Component 1"/>
+    <MyStandardComponent Caption="Component 2"/>
+}
+
+<button @onclick="GoToNextStep" disabled="@IsButtonDisabled">Next Step</button>
+
+<style>
+    .scope-name {
+    width: 5rem;
+    display: inline-block;
+    font-weight: bold;
+    }
+
+    .instance-info {
+    color: white;
+    background-color: #888;
+    padding: 0 4px;
+    margin: 2px;
+    display: inline-block;
+    }
+
+    .instance-info.new-instance {
+    background-color: #3f8f42;
+    animation: flash-green 2s;
+    }
+
+    @@keyframes flash-green {
+    from {
+    background-color: #4cff00;
+    }
+
+    to {
+    background-color: #3f8f42;
+    }
+    }
+</style>
+
+@code
+{
+    [Parameter] public string Continue { get; set; }
+
+    private int _currentStep = 1;
+    private string CurrentStepName => _stepNames[_currentStep - 1];
+    private bool IsButtonDisabled => _currentStep >= _stepNames.Length;
+
+    private string[] _stepNames =
+    [
+        "Website Started",
+        "Updated UI - Components Recreated",
+        "Reloaded Page in Browser",
+        "Updated UI - Componenets Recreated"
+    ];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (!string.IsNullOrWhiteSpace(Continue))
+            _currentStep = 3;
+    }
+
+    private void GoToNextStep()
+    {
+        _currentStep++;
+        if (_currentStep == 3)
+            NavigationManager.NavigateTo("/continue", forceLoad: true);
+    }
+}

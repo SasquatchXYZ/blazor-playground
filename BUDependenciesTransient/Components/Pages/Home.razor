@@ -1,0 +1,28 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<div>
+    <input id="show-first" type="checkbox" @bind="_showFirst"/><label for="show-first">Show first</label>
+
+    @if (_showFirst)
+    {
+        <MyStandardComponent/>
+    }
+</div>
+
+<div>
+    <input id="show-second" type="checkbox" @bind="_showSecond"/><label for="show-second">Show second</label>
+
+    @if (_showSecond)
+    {
+        <MyStandardComponent/>
+    }
+</div>
+
+@code
+{
+    bool _showFirst;
+    bool _showSecond;
+}

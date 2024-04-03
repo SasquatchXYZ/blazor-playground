@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<input id="show-component" type="checkbox" @bind="_showComponent"/>
+<label for="show-component">Show Component</label>
+
+@if (_showComponent)
+{
+    <MyOwningComponent/>
+}
+
+@code
+{
+    bool _showComponent = false;
+}

@@ -1,0 +1,33 @@
+@using BUOwningMultipleDependenciesRight.Services
+@using System.Diagnostics
+@inherits OwningComponentBase
+
+<div>
+    OwnedDependency1.InstanceNumber = @_ownedDependency1?.InstanceNumber
+</div>
+<div>
+    OwnedDependency2.InstanceNumber = @_ownedDependency2?.InstanceNumber
+</div>
+
+@code
+{
+    private IOwnedDependency1? _ownedDependency1;
+    private IOwnedDependency2? _ownedDependency2;
+
+    public MyOwningComponent()
+    {
+        Debug.WriteLine("Created " + GetType().Name);
+    }
+
+    protected override void OnInitialized()
+    {
+        _ownedDependency1 = ScopedServices.GetService<IOwnedDependency1>();
+        _ownedDependency2 = ScopedServices.GetService<IOwnedDependency2>();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        Debug.WriteLine("Disposing " + GetType().Name);
+    }
+}

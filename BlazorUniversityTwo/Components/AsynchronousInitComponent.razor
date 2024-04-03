@@ -1,0 +1,19 @@
+<p>Async rendered by thread @_idOfRenderingThread</p>
+
+@code {
+    int _idOfRenderingThread;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Runs synchronously as there is no code in base.OnInitialized(),
+        // so the same thread is used
+        await base.OnInitializedAsync().ConfigureAwait(false);
+        _idOfRenderingThread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+
+        // Awaiting will schedule a job for later, and we will be assigned
+        // whichever worker thread is next available
+        await Task.Delay(1000).ConfigureAwait(false);
+        _idOfRenderingThread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+    }
+
+}

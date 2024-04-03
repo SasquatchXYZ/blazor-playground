@@ -1,0 +1,22 @@
+@implements IDisposable
+
+<div>
+    Counter value is: @CounterState.Value at @DateTime.UtcNow.ToString("HH:mm:ss")
+</div>
+
+@code {
+    private System.Threading.Timer? _timer;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _timer = new Timer(_ => { InvokeAsync(StateHasChanged); }, null, 500, 500);
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+        _timer = null;
+    }
+
+}

@@ -1,0 +1,16 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1 @ref="_myElementReference">Hello, world!</h1>
+Enter your name: <input @ref="_referenceToInputControl"/>
+<Autofocus GetControl="@(() => _referenceToInputControl)"/>
+<br/>
+Welcome to your new app.
+
+@code
+{
+    ElementReference _myElementReference;
+    ElementReference _referenceToInputControl;
+}

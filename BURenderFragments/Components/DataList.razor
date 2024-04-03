@@ -1,0 +1,31 @@
+@typeparam TItem
+
+@if (ListTemplate is null)
+{
+    <ul>
+
+        @foreach (var item in Data ?? Array.Empty<TItem>())
+        {
+            @ItemTemplate(item)
+        }
+
+    </ul>
+}
+else
+{
+    @ListTemplate(
+        @:@{
+        foreach (var item in Data ?? Array.Empty<TItem>())
+        {
+            @ItemTemplate(item);
+        }
+    }
+    )
+}
+
+@code {
+    [Parameter] public IEnumerable<TItem>? Data { get; set; }
+    [Parameter] public RenderFragment<TItem>? ItemTemplate { get; set; }
+    [Parameter] public RenderFragment<RenderFragment>? ListTemplate { get; set; }
+
+}

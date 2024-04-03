@@ -1,0 +1,41 @@
+﻿@page "/"
+@using BUInjectingIntoBlazorComponents.Services
+@inject IToDoApi ToDoApi
+
+<PageTitle>Home</PageTitle>
+
+<h1>To Do</h1>
+
+@if (_data.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Completed</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in _data)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Completed</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private IEnumerable<ToDo> _data = Array.Empty<ToDo>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _data = await ToDoApi.GetToDosAsync();
+    }
+}

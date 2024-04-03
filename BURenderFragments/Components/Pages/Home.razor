@@ -1,0 +1,74 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<Collapsible>This is ChildContent</Collapsible>
+
+<TabControl>
+
+    <TabTextTemplate>
+        Hello
+    </TabTextTemplate>
+
+    <ChildContent>
+        <TabPage Text="Tab 1">
+            <h1>The first tab</h1>
+        </TabPage>
+        <TabPage Text="Tab 2">
+            <h1>The second tab</h1>
+        </TabPage>
+        <TabPage Text="Tab 3">
+            <h1>The third tab</h1>
+        </TabPage>
+    </ChildContent>
+</TabControl>
+
+<h1>A generic list of Person</h1>
+<!-- A Simple List -->
+<DataList Data="@_people">
+    <ItemTemplate>
+        <li key="context">@context.Salutation @context.FamilyName @context.GivenName</li>
+    </ItemTemplate>
+</DataList>
+
+<!-- An HTML Table -->
+<DataList Data="@_people">
+    <ListTemplate Context="listOfPeople">
+        <table border="1" cellpadding="4">
+            <thead>
+            <tr>
+                <th>Salutation</th>
+                <th>Given Name</th>
+                <th>Family Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @listOfPeople
+            </tbody>
+        </table>
+    </ListTemplate>
+    <ItemTemplate Context="person">
+        <tr @key="@person">
+            <td>@person.Salutation</td>
+            <td>@person.GivenName</td>
+            <td>@person.FamilyName</td>
+        </tr>
+    </ItemTemplate>
+</DataList>
+
+@code
+{
+    private IEnumerable<Person>? _people;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _people = new[]
+        {
+            new Person("Mr", "Bob", "Geldof"),
+            new Person("Mrs", "Angela", "Rippon"),
+            new Person("Mr", "Freddie", "Mercury")
+        };
+    }
+}

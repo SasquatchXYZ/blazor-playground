@@ -1,0 +1,31 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<ul>
+    <li>Last multiple of two = @_lastMultipleOfTwo</li>
+    <li>Last multiple of three = @_lastMultipleOfThree</li>
+</ul>
+
+@* <MyFirstComponent/> *@
+<Counter OnMultipleOfThree="@UpdateLastMultipleOfThreeValue" OnMultipleOfTwoAction="@UpdateLastMultipleOfTwoValue"/>
+
+@code
+{
+    int _lastMultipleOfTwo = 0;
+    int _lastMultipleOfThree = 0;
+
+    private Task UpdateLastMultipleOfThreeValue(int value)
+    {
+        _lastMultipleOfThree = value;
+        return Task.CompletedTask;
+    }
+
+    private void UpdateLastMultipleOfTwoValue(int value)
+    {
+        _lastMultipleOfTwo = value;
+    }
+}

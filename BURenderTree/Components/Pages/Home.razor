@@ -1,0 +1,65 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<button @onclick="@ChangeData">Change data</button>
+
+<style>
+    .card-img-top {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+<ol>
+    @foreach (var person in _people)
+    {
+        <li class="card" @key="person">
+            <img class="card-img-top" src="https://randomuser.me/api/portraits/men/@(person.Id).jpg"/>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @person.GivenName @person.FamilyName
+                </h5>
+                <p class="card-text">
+                    @person.GivenName @person.FamilyName has the id @person.Id
+                </p>
+            </div>
+        </li>
+    }
+</ol>
+
+@code
+{
+    List<Person> _people = new()
+    {
+        new Person(1, "Peter", "Morris"),
+        new Person(2, "Bob", "Monkhouse"),
+        new Person(3, "Frank", "Sinatra"),
+        new Person(4, "David", "Banner")
+    };
+
+    void ChangeData()
+    {
+        var person = _people[0];
+        _people.RemoveAt(0);
+        _people.Add(person);
+    }
+
+    class Person
+    {
+        public int Id { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
+
+        public Person(int id, string givenName, string familyName)
+        {
+            Id = id;
+            GivenName = givenName;
+            FamilyName = familyName;
+        }
+    }
+}
