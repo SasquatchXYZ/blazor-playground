@@ -1,0 +1,10 @@
+@using BUOwningMultipleDependenciesWrong.Services
+@inherits OwningComponentBase<BUOwningMultipleDependenciesWrong.Services.IOwnedDependency>
+@inject IInjectedDependency InjectedDependency
+
+<div>
+    Service.InstanceNumber = @Service.InstanceNumber
+</div>
+<div>
+    InjectedDependency.InstanceNumber = @InjectedDependency.InstanceNumber
+</div>
