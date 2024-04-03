@@ -1,10 +1,13 @@
 using BUOwningMultipleDependenciesRight.Components;
+using BUOwningMultipleDependenciesRight.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<IOwnedDependency1, OwnedDependency1>();
+builder.Services.AddScoped<IOwnedDependency2, OwnedDependency2>();
 
 var app = builder.Build();
 
