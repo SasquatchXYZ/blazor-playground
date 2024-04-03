@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUOwningComponentBase", "BU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUOwningMultipleDependenciesWrong", "BUOwningMultipleDependenciesWrong\BUOwningMultipleDependenciesWrong.csproj", "{AB246055-00AB-4A73-93EE-0AD611AC9502}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUOwningMultipleDependenciesRight", "BUOwningMultipleDependenciesRight\BUOwningMultipleDependenciesRight.csproj", "{28A7D45C-5BA8-42BE-9DB6-B8159E233D29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,5 +170,9 @@ Global
 		{AB246055-00AB-4A73-93EE-0AD611AC9502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB246055-00AB-4A73-93EE-0AD611AC9502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB246055-00AB-4A73-93EE-0AD611AC9502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A7D45C-5BA8-42BE-9DB6-B8159E233D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A7D45C-5BA8-42BE-9DB6-B8159E233D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A7D45C-5BA8-42BE-9DB6-B8159E233D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A7D45C-5BA8-42BE-9DB6-B8159E233D29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
