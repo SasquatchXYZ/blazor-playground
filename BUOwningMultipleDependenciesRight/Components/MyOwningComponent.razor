@@ -1,5 +1,21 @@
-<h3>MyOwningComponent</h3>
+@using BUOwningMultipleDependenciesRight.Services
+@inherits OwningComponentBase
 
-@code {
-    
+<div>
+    OwnedDependency1.InstanceNumber = @_ownedDependency1?.InstanceNumber
+</div>
+<div>
+    OwnedDependency2.InstanceNumber = @_ownedDependency2?.InstanceNumber
+</div>
+
+@code
+{
+    private IOwnedDependency1? _ownedDependency1;
+    private IOwnedDependency2? _ownedDependency2;
+
+    protected override void OnInitialized()
+    {
+        _ownedDependency1 = ScopedServices.GetService<IOwnedDependency1>();
+        _ownedDependency2 = ScopedServices.GetService<IOwnedDependency2>();
+    }
 }
